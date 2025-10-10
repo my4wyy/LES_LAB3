@@ -1,0 +1,88 @@
+{
+  "dataset_info": {
+    "total_prs": 381,
+    "merged_prs": 192,
+    "closed_prs": 189,
+    "merge_rate": 0.5039370078740157
+  },
+  "medians": {
+    "changed_files": 1.0,
+    "total_lines_changed": 23.0,
+    "analysis_time_hours": 125.36833333333334,
+    "body_length": 379.0,
+    "participants_count": 0.0,
+    "comments": 2.0
+  },
+  "correlations": {
+    "status_vs_changed_files": {
+      "spearman": 0.13047940150406007,
+      "spearman_p": 0.01079098764491648,
+      "pearson": -0.04846397017758335,
+      "pearson_p": 0.3454634955262928,
+      "merged_median": 2.0,
+      "closed_median": 1.0
+    },
+    "status_vs_total_lines_changed": {
+      "spearman": 0.00693551675245227,
+      "spearman_p": 0.8926650925747727,
+      "pearson": -0.06485955751173923,
+      "pearson_p": 0.20652500159616125,
+      "merged_median": 22.5,
+      "closed_median": 24.0
+    },
+    "status_vs_analysis_time_hours": {
+      "spearman": -0.40853949398451983,
+      "spearman_p": 9.273533778216633e-17,
+      "pearson": -0.2738087660117011,
+      "pearson_p": 5.600464338084024e-08,
+      "merged_median": 27.747083333333336,
+      "closed_median": 663.0188888888889
+    },
+    "status_vs_body_length": {
+      "spearman": 0.03451116722898757,
+      "spearman_p": 0.5018270554299018,
+      "pearson": -0.08193890760593056,
+      "pearson_p": 0.11030705978878945,
+      "merged_median": 384.0,
+      "closed_median": 365.0
+    },
+    "status_vs_comments": {
+      "spearman": -0.012831433301049449,
+      "spearman_p": 0.8028604230557864,
+      "pearson": -0.060053447721703776,
+      "pearson_p": 0.24224226554032702,
+      "merged_median": 2.0,
+      "closed_median": 2.0
+    },
+    "reviews_vs_changed_files": {
+      "spearman": 0.21900585320467272,
+      "spearman_p": 1.6087097130880142e-05,
+      "pearson": 0.00861332333203977,
+      "pearson_p": 0.8669168172617854
+    },
+    "reviews_vs_total_lines_changed": {
+      "spearman": 0.2585785729928158,
+      "spearman_p": 3.088438609932102e-07,
+      "pearson": 0.010789445584471447,
+      "pearson_p": 0.833733475344114
+    },
+    "reviews_vs_analysis_time_hours": {
+      "spearman": 0.14919661540097628,
+      "spearman_p": 0.0035117080775779307,
+      "pearson": 0.016149373710218788,
+      "pearson_p": 0.7533631202327815
+    },
+    "reviews_vs_body_length": {
+      "spearman": 0.19814223146115797,
+      "spearman_p": 9.878987794818613e-05,
+      "pearson": 0.1806032581092135,
+      "pearson_p": 0.00039586160363818486
+    },
+    "reviews_vs_comments": {
+      "spearman": 0.22233277918485497,
+      "spearman_p": 1.184342105052744e-05,
+      "pearson": 0.21505044583477073,
+      "pearson_p": 2.3012461985293333e-05
+    }
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "dataset_info": {
+    "total_prs": 3616,
+    "merged_prs": 2007,
+    "closed_prs": 1609,
+    "merge_rate": 55.50331858407079
+  },
+  "medians": {
+    "total_lines_changed": 24.0,
+    "analysis_time_hours": 139.05569444444444,
+    "body_length": 424.5,
+    "total_interactions": 3.0,
+    "review_comments": 0.0,
+    "participants_count": 0.0
+  },
+  "correlations": {
+    "status_vs_changed_files": {
+      "spearman": 0.13899984257983386,
+      "spearman_p": 4.6036778918731554e-17,
+      "pearson": -0.03874950374690993,
+      "pearson_p": 0.01979555168413015,
+      "merged_median": 2.0,
+      "closed_median": 1.0
+    },
+    "status_vs_total_lines_changed": {
+      "spearman": 0.05543105378343675,
+      "spearman_p": 0.0008540458811112162,
+      "pearson": -0.058613087570213274,
+      "pearson_p": 0.0004212423883820605,
+      "merged_median": 28.0,
+      "closed_median": 20.0
+    },
+    "status_vs_additions": {
+      "spearman": 0.05867961849526738,
+      "spearman_p": 0.00041490893378835005,
+      "pearson": -0.03765502104392376,
+      "pearson_p": 0.023553426214099955,
+      "merged_median": 17.0,
+      "closed_median": 12.0
+    },
+    "status_vs_deletions": {
+      "spearman": 0.1043048342710669,
+      "spearman_p": 3.233080195139427e-10,
+      "pearson": -0.04556449980997175,
+      "pearson_p": 0.0061361751041538485,
+      "merged_median": 4.0,
+      "closed_median": 2.0
+    },
+    "status_vs_analysis_time_hours": {
+      "spearman": -0.3550708832579754,
+      "spearman_p": 6.5356224647722385e-108,
+      "pearson": -0.2633686055477221,
+      "pearson_p": 1.9353775298237687e-58,
+      "merged_median": 51.71194444444444,
+      "closed_median": 587.4466666666667
+    },
+    "status_vs_body_length": {
+      "spearman": -0.0053236816816535325,
+      "spearman_p": 0.7489520143013697,
+      "pearson": -0.09835206970916932,
+      "pearson_p": 3.0936236068258723e-09,
+      "merged_median": 419.0,
+      "closed_median": 431.0
+    },
+    "status_vs_participants_count": {
+      "spearman": NaN,
+      "spearman_p": NaN,
+      "pearson": NaN,
+      "pearson_p": NaN,
+      "merged_median": 0.0,
+      "closed_median": 0.0
+    },
+    "status_vs_total_interactions": {
+      "spearman": 0.06436387037393919,
+      "spearman_p": 0.00010746737885489944,
+      "pearson": -0.00022743771011165008,
+      "pearson_p": 0.9890918012226184,
+      "merged_median": 3.0,
+      "closed_median": 2.0
+    },
+    "status_vs_comments": {
+      "spearman": -0.06298650102624377,
+      "spearman_p": 0.00015062731776986705,
+      "pearson": -0.05656448623225785,
+      "pearson_p": 0.0006666215703056748,
+      "merged_median": 2.0,
+      "closed_median": 2.0
+    },
+    "status_vs_review_comments": {
+      "spearman": 0.19640020226806687,
+      "spearman_p": 9.048533370936201e-33,
+      "pearson": 0.10951263493957977,
+      "pearson_p": 4.030984808479198e-11,
+      "merged_median": 0.0,
+      "closed_median": 0.0
+    },
+    "reviews_vs_changed_files": {
+      "spearman": 0.2385150027612053,
+      "spearman_p": 5.999172931001605e-48,
+      "pearson": 0.009471057494281173,
+      "pearson_p": 0.5691249395094713
+    },
+    "reviews_vs_total_lines_changed": {
+      "spearman": 0.2699237111707341,
+      "spearman_p": 2.10260445601233e-61,
+      "pearson": 0.001153982495782505,
+      "pearson_p": 0.9446961627854183
+    },
+    "reviews_vs_additions": {
+      "spearman": 0.2983964552503737,
+      "spearman_p": 2.8957966939444423e-75,
+      "pearson": 0.00500020797051123,
+      "pearson_p": 0.7637375637197236
+    },
+    "reviews_vs_deletions": {
+      "spearman": 0.13951121107766395,
+      "spearman_p": 3.5283696439728835e-17,
+      "pearson": -0.0027887441589839242,
+      "pearson_p": 0.8668677469159368
+    },
+    "reviews_vs_analysis_time_hours": {
+      "spearman": 0.09559479547337953,
+      "spearman_p": 8.43004884612311e-09,
+      "pearson": 0.009265529127048337,
+      "pearson_p": 0.5775376082154211
+    },
+    "reviews_vs_body_length": {
+      "spearman": 0.15580765013165798,
+      "spearman_p": 4.359878253470229e-21,
+      "pearson": 0.008586810069156778,
+      "pearson_p": 0.6057264388797573
+    },
+    "reviews_vs_participants_count": {
+      "spearman": NaN,
+      "spearman_p": NaN,
+      "pearson": NaN,
+      "pearson_p": NaN
+    },
+    "reviews_vs_comments": {
+      "spearman": 0.06735184257498693,
+      "spearman_p": 5.0503745389008337e-05,
+      "pearson": 0.1517452632587973,
+      "pearson_p": 4.517898441345445e-20
+    }
+  }
+}

@@ -1,6 +1,7 @@
 # Relatório Final – Lab03: Caracterizando a atividade de code review no GitHub
 
 ## 1. Informações do grupo
+- **Curso:** Engenharia de Software  
 - **Disciplina:** Laboratório de Experimentação de Software  
 - **Período:** 6º Período  
 - **Professor:** Prof. Dr. João Paulo Carneiro Aramuni  
@@ -10,7 +11,7 @@
 
 ## 2. Introdução
 Este laboratório investiga a atividade de code review em repositórios populares do GitHub, analisando fatores que influenciam no merge de Pull Requests e no número de revisões realizadas.  
-Este relatório usa a amostra balanceada de 500 PRs (com 200 repositórios e 2–3 PRs por repositório). Após aplicar filtros e checagens, 381 PRs válidos foram analisados.
+Foram coletados dados de 3.616 PRs válidos dos 200 repositórios mais populares do GitHub, aplicando filtros para garantir que passaram por processo de review humano.
 
 ### Hipóteses informais
 - **IH01:** PRs menores (menos arquivos e linhas modificadas) têm maior probabilidade de serem merged.  
@@ -27,19 +28,26 @@ Este relatório usa a amostra balanceada de 500 PRs (com 200 repositórios e 2�
 - **API:** GitHub REST API  
 - **Análise Estatística:** Teste de correlação de Spearman  
 
+---
+
 ## 4. Metodologia
-
 ### 4.1 Coleta de dados
-Foram coletados 500 PRs de 200 repositórios populares utilizando a GitHub REST API.
-Critério: amostra balanceada por repositório (2–3 PRs), repositórios ordenados por estrelas.
+Foram coletados dados dos 200 repositórios mais populares do GitHub (por número de estrelas).  
+Para cada repositório, coletamos PRs que atendessem aos critérios:
+- Status: MERGED ou CLOSED 
+- Interações: ≥ 1 comentário ou review
 
-### 4.2 Consolidação
-Os dados foram consolidados em data/pull_requests_500.csv com métricas derivadas (tamanho, tempo, interações).
-Resultados e figuras foram gerados em results_500pr/, com resumo em results_500pr/analysis_results.json.
+### 4.2 Métricas definidas
+**Tamanho:** Número de arquivos modificados, linhas adicionadas e removidas  
+**Tempo:** Intervalo entre criação e fechamento/merge do PR  
+**Descrição:** Número de caracteres no corpo da descrição  
+**Interações:** Número de participantes, comentários e reviews  
 
-### 4.3 Análise
-Foi realizada estatística descritiva (medianas) e correlações de Spearman (p < 0,05).
-Foram gerados gráficos por RQ e uma matriz de correlação das principais variáveis.
+### 4.3 Análise estatística
+Utilizamos o **teste de correlação de Spearman** por ser adequado para:
+- Dados não-paramétricos
+- Distribuições assimétricas típicas de repositórios GitHub
+- Robustez a outliers
 
 
 ---
@@ -47,128 +55,137 @@ Foram gerados gráficos por RQ e uma matriz de correlação das principais vari�
 ## 5. Questões de pesquisa
 
 ### RQ01: Qual a relação entre o tamanho dos PRs e o feedback final das revisões?
+Esta questão investiga se PRs menores têm maior probabilidade de serem merged. Analisamos número de arquivos modificados, linhas adicionadas e removidas como métricas de tamanho.
 
-![Tamanho vs Status](results_500pr/rq01_tamanho_vs_status.png)
+![Tamanho vs Status](results/rq01_tamanho_vs_status.png)
 
 ### RQ02: Qual a relação entre o tempo de análise dos PRs e o feedback final das revisões?  
+Examina se PRs que demoram mais para serem analisados têm menor chance de serem integrados. O tempo é medido desde a criação até o fechamento/merge.
 
-
-![Tempo vs Status](results_500pr/rq02_tempo_vs_status.png)
+![Tempo vs Status](results/rq02_tempo_vs_status.png)
 
 ### RQ03: Qual a relação entre a descrição dos PRs e o feedback final das revisões?
+Avalia se descrições mais detalhadas (maior número de caracteres) aumentam a probabilidade de merge, facilitando o entendimento pelos revisores.
 
-
-![Descrição vs Status](results_500pr/rq03_descricao_vs_status.png)
+![Descrição vs Status](results/rq03_descricao_vs_status.png)
 
 ### RQ04: Qual a relação entre as interações nos PRs e o feedback final das revisões?
+Analisa se maior engajamento (comentários, reviews, participantes) está associado a maior taxa de merge dos PRs.
 
-
-![Interações vs Status](results_500pr/rq04_interacoes_vs_status.png)
+![Interações vs Status](results/rq04_interacoes_vs_status.png)
 
 ### RQ05: Qual a relação entre o tamanho dos PRs e o número de revisões realizadas?
+Investiga se PRs maiores demandam mais rounds de revisão devido à maior complexidade e probabilidade de erros.
 
-
-![Tamanho vs Revisões](results_500pr/rq05_tamanho_vs_revisoes.png)
+![Tamanho vs Revisões](results/rq05_tamanho_vs_revisoes.png)
 
 ### RQ06: Qual a relação entre o tempo de análise dos PRs e o número de revisões realizadas?
+Examina se PRs que permanecem abertos por mais tempo acumulam mais revisões ao longo do processo.
 
-![Tempo vs Revisões](results_500pr/rq06_tempo_vs_revisoes.png)
+![Tempo vs Revisões](results/rq06_tempo_vs_revisoes.png)
 
 ### RQ07: Qual a relação entre a descrição dos PRs e o número de revisões realizadas?
+Avalia se descrições mais detalhadas resultam em menos revisões por facilitarem o entendimento inicial.
 
-
-![Descrição vs Revisões](results_500pr/rq07_descricao_vs_revisoes.png)
+![Descrição vs Revisões](results/rq07_descricao_vs_revisoes.png)
 
 ### RQ08: Qual a relação entre as interações nos PRs e o número de revisões realizadas?
+Analisa a relação entre comentários e a intensidade do processo de review.
 
-
-![Interações vs Revisões](results_500pr/rq08_interacoes_vs_revisoes.png)  
+![Interações vs Revisões](results/rq08_interacoes_vs_revisoes.png)  
 
 ---
 
 ## 6. Resultados
 
 
-### 6.1 Estatísticas descritivas (500 PRs)
-- **Total de PRs analisados:** 381
-- **PRs merged:** 192 (50,4%)
-- **PRs closed:** 189 (49,6%)
-- **Mediana de arquivos modificados:** 1
-- **Mediana de linhas modificadas:** 23
-- **Mediana de tempo de análise:** 125,37 horas
-- **Mediana de tamanho da descrição:** 379 caracteres
+### 6.1 Estatísticas descritivas
+- **Total de PRs analisados:** 3.616
+- **PRs merged:** 2.007 (55.5%)
+- **PRs closed:** 1.609 (44.5%)
+- **Mediana de linhas modificadas:** 24
+- **Mediana de tempo de análise:** 139.1 horas
+- **Mediana de tamanho da descrição:** 424 caracteres
 
 ### 6.2 Gráficos por questão de pesquisa
 
 
 
 #### Matriz de Correlação Geral
-![Matriz de Correlação](results_500pr/matriz_correlacao.png)
+![Matriz de Correlação](results/matriz_correlacao.png)
+
 
 ### 6.3 Principais correlações encontradas
 
-#### RQ01: Tamanho vs Status (500 PRs)
-- *Arquivos modificados:* r ≈ 0.130 (p ≈ 0,011) — fraca positiva
-- *Total de linhas modificadas:* r ≈ 0,007 (ns) — sem efeito
+#### RQ01: Tamanho vs Status
+- *Arquivos modificados:* r = 0.139 (p < 0.001) - Mais arquivos = maior chance de merge
+- *Total de linhas:* r = 0.055 (p < 0.001) - Correlação fraca positiva
+- *Linhas adicionadas:* r = 0.059 (p < 0.001) - Correlação fraca positiva
+- *Linhas removidas:* r = 0.104 (p < 0.001) - Correlação fraca positiva
 
-#### RQ02: Tempo vs Status (500 PRs)  
-- *Tempo de análise:* r ≈ -0,409 (p ≪ 0,001) — *negativa forte*
-  - PRs merged: mediana ≈ 27,75 h
-  - PRs closed: mediana ≈ 663,02 h
+#### RQ02: Tempo vs Status  
+- *Tempo de análise:* r = -0.355 (p < 0.001) - *Correlação negativa forte*
+  - PRs merged: mediana 51.7 horas
+  - PRs closed: mediana 587.4 horas
 
-#### RQ03: Descrição vs Status (500 PRs)
-- *Tamanho da descrição:* r ≈ 0,035 (p ≈ 0,502) — sem correlação significativa
-  - PRs merged: mediana 384 caracteres
-  - PRs closed: mediana 365 caracteres
+#### RQ03: Descrição vs Status
+- *Tamanho da descrição:* r = -0.005 (p = 0.749) - Sem correlação significativa
+  - PRs merged: mediana 419 caracteres
+  - PRs closed: mediana 431 caracteres
 
-#### RQ04: Interações vs Status (500 PRs)
-- *Comments:* r ≈ -0,013 (ns)
+#### RQ04: Interações vs Status
+- *Review comments:* r = 0.196 (p < 0.001) - Mais reviews = maior chance de merge
+- *Comments:* r = -0.061 (p < 0.001) - Mais comentários = menor chance de merge
+- *Participantes:* sem correlação significativa
 
+#### RQ05: Tamanho vs Revisões
+- *Linhas adicionadas:* r = 0.298 (p < 0.001) - *Correlação mais forte*
+- *Total de linhas:* r = 0.270 (p < 0.001)
+- *Arquivos modificados:* r = 0.239 (p < 0.001)
+- *Linhas removidas:* r = 0.140 (p < 0.001)
 
-#### RQ05: Tamanho vs Revisões (500 PRs)
-- *Total de linhas modificadas:* r ≈ 0,259 (p ≪ 0,001)
-- *Arquivos modificados:* r ≈ 0,219 (p ≪ 0,001)
+#### RQ06: Tempo vs Revisões
+- *Tempo de análise:* r = 0.096 (p < 1e-8) - Correlação muito fraca (significativa)
 
-#### RQ06: Tempo vs Revisões (500 PRs)
-- *Tempo de análise:* r ≈ 0,149 (p ≈ 0,0035) — fraca positiva
+#### RQ07: Descrição vs Revisões  
+- *Tamanho da descrição:* r = 0.156 (p < 0.001) - Correlação fraca positiva
 
-#### RQ07: Descrição vs Revisões (500 PRs) 
-- *Tamanho da descrição:* r ≈ 0,198 (p ≪ 0,001) — fraca positiva
-
-#### RQ08: Interações vs Revisões (500 PRs)
-- *Comments vs Reviews:* r ≈ 0,222 (p ≪ 0,001) — fraca positiva
-
+#### RQ08: Interações vs Revisões
+- *Comments vs Reviews:* r = 0.067 (p = 5.0e-05) - Correlação muito fraca positiva
+- *Participantes vs Reviews:* sem correlação
 
 ---
 
 ## 7. Discussão
-A análise (500 PRs) revelou padrões importantes:
+A análise revelou padrões importantes na atividade de code review no GitHub:
 
 ### 7.1 Principais achados
 
-*Tempo é crítico para o merge:* correlação negativa forte entre tempo de análise e status (r ≈ -0,409). PRs que ficam muito tempo abertos tendem a fechar sem merge.
+*Tempo é o fator mais determinante:* A correlação mais forte encontrada (r = -0.355) foi entre tempo de análise e probabilidade de merge. PRs que demoram mais para serem analisados têm menor chance de serem integrados.
 
-*Tamanho influencia revisões:* PRs maiores (mais arquivos/linhas) recebem mais reviews (r ≈ 0,22–0,26), alinhado à IH05.
+*Tamanho influencia revisões:* PRs maiores (mais linhas adicionadas) requerem significativamente mais revisões (r = 0.298), confirmando a hipótese IH05.
 
-*Interações:* comments gerais se correlacionam com reviews (r ≈ 0,222), mas não alteraram significativamente o status. Participantes ficou constante e não foi informativo.
+*Reviews vs Comments:* Interessantemente, review comments aumentam a chance de merge (r = 0.196), enquanto comments gerais a diminuem (r = -0.061), sugerindo que feedback estruturado é mais efetivo.
 
 ### 7.2 Validação das hipóteses
 
-- *IH01 (PRs menores → maior merge):* *NÃO CONFIRMADA* — efeitos pequenos; leve tendência oposta em arquivos modificados.
-- *IH02 (Descrições detalhadas → maior merge):* *NÃO CONFIRMADA* — sem efeito significativo em status.
-- *IH03 (Tempo longo → menor merge):* *CONFIRMADA* — r ≈ -0,409.
-- *IH04 (Mais interações → maior merge):* *PARCIALMENTE CONFIRMADA* — depende do tipo de interação (comments se relacionam a reviews, mas não a status).
-- *IH05 (PRs maiores → mais revisões):* *CONFIRMADA* — r ≈ 0,22–0,26.
+- *IH01 (PRs menores → maior merge):* *NÃO CONFIRMADA* - Correlações observadas indicam leve tendência oposta (PRs maiores com chance um pouco maior de merge).
+- *IH02 (Descrições detalhadas → maior merge):* *NÃO CONFIRMADA* - Sem correlação significativa entre tamanho da descrição e merge.
+- *IH03 (Tempo longo → menor merge):* *CONFIRMADA* - Correlação negativa forte (r = -0.355).
+- *IH04 (Mais interações → maior merge):* *PARCIALMENTE CONFIRMADA* - Depende do tipo de interação (reviews aumentam chance; comments gerais reduzem levemente).
+- *IH05 (PRs maiores → mais revisões):* *CONFIRMADA* - Correlação positiva (r ≈ 0.27–0.30 para tamanho).
 
-
+---
 
 ## 8. Conclusão
-Na amostra de 500 PRs (381 válidos), concluímos:
+O estudo de 3.616 PRs de repositórios populares do GitHub revelou que:
 
-1. O tempo de análise se relaciona fortemente com o resultado (r ≈ -0,409): PRs com longas filas têm menor chance de merge.
-2. PRs maiores demandam mais revisões (r ≈ 0,22–0,26), mas tamanho não determinou o status de forma forte.
-3. Comentários gerais aumentam a atividade de review (r ≈ 0,222), sem evidência clara de impacto no merge; participantes não foi informativo.
-4. Descrições maiores não mostraram ganho significativo de probabilidade de merge.
+1. *O tempo de análise é o fator mais crítico* para o sucesso de um PR (r = -0.355)
+2. *PRs maiores demandam mais revisões*, mas não necessariamente são rejeitados
+3. *A qualidade das interações importa mais que a quantidade* (reviews > comments)
+4. *Descrições detalhadas aumentam ligeiramente as chances de merge*
+
+A taxa geral de merge de 55.5% indica um processo seletivo, mas equilibrado nos repositórios analisados.
 
 ---
 
@@ -183,6 +200,6 @@ Na amostra de 500 PRs (381 válidos), concluímos:
 
 ## 10. Apêndices
 - Scripts em scripts/  
-- Dataset em data/pull_requests_500.csv
-- Resultados detalhados em results_500pr/analysis_results.json
-- Visualizações em results_500pr/*.png
+- Dataset em data/pull_requests.csv
+- Resultados detalhados em results/analysis_results.json
+- Visualizações em results/*.png
